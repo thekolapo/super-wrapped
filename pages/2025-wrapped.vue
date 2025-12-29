@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="wrapped">
     <header class="header">
       <nav class="nav" aria-label="Primary Navigation">
         <ul class="nav__menu">
@@ -47,18 +47,28 @@
       </nav>
     </header>
     <main>
-      <section class="hero">
-        <span class="hero__label u-text-xs">YOUR YEAR with SUPER</span>
-        <h1 class="u-text-h1">Super Wrapped 2025</h1>
-        <p class="hero__body">
-          A look back at the moments, patterns, and impact that shaped your year
-          at work. We’re spotlighting the small moments, big wins, and quiet
-          impact that made your year yours.
+      <section class="wrapped-card wrapped-card--intro">
+        <span class="wrapped-card__label u-text-xs">YOUR YEAR with SUPER</span>
+        <h1 class="u-text-h1">Hi Kolapo, let's unwind together</h1>
+        <p class="wrapped-card__body">
+          Here’s how you worked, built and made impact this year.
         </p>
-        <NuxtLink to="2025-wrapped" class="hero__button c-button">
-          Unwrap your year
-        </NuxtLink>
-        <div ref="sectionIntegrations" id="js-apps" class="hero__apps" />
+        <button class="wrapped-card__button c-button">Let's begin</button>
+      </section>
+      <section class="wrapped-card wrapped-card--cream">
+        <h1 class="u-text-h1 u-text-h1--alt">3,520</h1>
+        <p class="wrapped-card__body">
+          You made 3,520 searches with Super this year. That’s thousands of
+          moments you found answers fast without breaking your flow.
+        </p>
+        <button class="wrapped-card__button c-button c-button--alt">
+          Share this story
+        </button>
+        <div
+          ref="sectionIntegrations"
+          id="js-apps"
+          class="wrapped-card__apps"
+        />
       </section>
     </main>
     <footer class="footer">
@@ -258,8 +268,8 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.home {
+<style lang="scss">
+.wrapped {
   height: 100dvh;
   padding: 8rem 2rem 2rem;
 
@@ -274,7 +284,7 @@ onMounted(() => {
     }
   }
 
-  .hero {
+  .wrapped-card {
     position: relative;
     display: flex;
     align-items: center;
@@ -284,15 +294,14 @@ onMounted(() => {
     border: 1px dashed #cdcdcd75;
     margin: 60px auto 0;
     width: 100%;
-    height: 77vh;
+    height: 75vh;
     max-width: 1280px;
     border-radius: 50px;
+    padding-top: 14rem;
     overflow: hidden;
 
     &__label {
       text-transform: uppercase;
-      margin-top: 8.6rem;
-      visibility: hidden;
       color: line;
       background: linear-gradient(
         to right,
@@ -306,18 +315,54 @@ onMounted(() => {
     }
 
     &__body {
-      max-width: 760px;
+      max-width: 740px;
     }
 
     &__button {
       margin-top: 12px;
-      z-index: 2;
     }
 
     &__apps {
       position: absolute;
       width: 100%;
       height: 100%;
+      margin-top: -14rem;
+    }
+
+    &--intro {
+      padding-top: 8.2rem;
+
+      &::before {
+        position: absolute;
+        content: "";
+        width: 1550px;
+        height: 1550px;
+        background: white;
+        bottom: 0;
+        border-radius: 100%;
+        padding-top: 10rem;
+        font-size: 7rem;
+        background: var(--color-staurn-orange);
+        filter: blur(10px);
+        transition: 1.2s ease-in-out;
+        animation: scaleup 1.2s var(--ease-out-expo) forwards;
+        transform: translateY(95%) scale(0.5);
+
+        @keyframes scaleup {
+          to {
+            transform: translateY(80%) scale(1);
+          }
+        }
+      }
+    }
+
+    &--cream {
+      color: var(--color-space-grey);
+      background: var(--color-cream);
+
+      .u-text-h1 {
+        color: var(--color-space-grey);
+      }
     }
   }
 }
