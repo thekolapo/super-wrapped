@@ -8,7 +8,7 @@
 
 .u-text-h1 {
   font-size: 6rem;
-  line-height: 7rem;
+  // line-height: 7rem;
   // letter-spacing: -1px;
 
   &--alt {
@@ -28,7 +28,7 @@
 
 .u-text-h2 {
   font-size: 5rem;
-  line-height: 6rem;
+  // line-height: 6rem;
 
   @media only screen and (max-width: 720px) {
     font-size: 4rem;
@@ -39,6 +39,11 @@
     font-size: 3.3rem;
     line-height: 4.3rem;
   }
+}
+
+.u-text-h3 {
+  font-size: 4rem;
+  line-height: 5rem;
 }
 
 .u-text-sm {
@@ -61,4 +66,8 @@
 
 .u-font-italic {
   font-style: italic;
+}
+
+.u-text-black {
+  color: var(--color-space-grey);
 }
