@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <header class="header">
-      <nav class="nav" aria-label="Primary Navigation">
-        <ul class="nav__menu">
-          <li>
-            <a href="" target="">
+    <header class="home__header">
+      <nav class="home__nav" aria-label="Primary Navigation">
+        <ul class="home__nav-menu">
+          <li class="home__nav-logo">
+            <a href="/" target="">
               <svg
                 width="84"
                 height="28"
@@ -43,26 +43,62 @@
               </svg>
             </a>
           </li>
+          <li class="home__nav-item">
+            <a
+              href="https://super.work/organization/super/select"
+              class="home__link"
+            >
+              Sign in
+            </a>
+          </li>
+          <li class="home__nav-item">
+            <a
+              href="https://super.work/book-demo"
+              class="c-button c-button--small"
+            >
+              Book a demo
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
     <main>
-      <section class="hero">
-        <span class="hero__label u-text-xs">YOUR YEAR with SUPER</span>
+      <section class="home__hero">
+        <span class="home__hero-label u-text-xs">YOUR YEAR with SUPER</span>
         <h1 class="u-text-h1">Super Wrapped 2025</h1>
-        <p class="hero__body">
+        <p class="home__hero-body">
           A look back at the moments, patterns, and impact that shaped your year
           at work. We’re spotlighting the small moments, big wins, and quiet
           impact that made your year yours.
         </p>
-        <NuxtLink to="2025-wrapped" class="hero__button c-button">
+        <NuxtLink to="2025-wrapped" class="home__hero-button c-button">
           Unwrap your year
         </NuxtLink>
-        <div ref="sectionIntegrations" id="js-apps" class="hero__apps" />
+        <div ref="sectionIntegrations" id="js-apps" class="home__hero-apps" />
       </section>
     </main>
-    <footer class="footer">
-      <!-- <p class="u-text-sm">© Slite {{ new Date().getFullYear() }}</p> -->
+    <footer class="home__footer">
+      <ul class="home__footer-menu">
+        <li class="home__footer-item home__footer-item--copyright">
+          ©{{ new Date().getFullYear() }} Slite
+        </li>
+        <li class="home__footer-item">
+          <a
+            href="https://slite.slite.page/p/H1mLnkz6~/Privacy-at-Slite"
+            class="home__link"
+          >
+            Privacy
+          </a>
+        </li>
+        <li class="home__footer-item">
+          <a
+            href="https://storage.googleapis.com/slite-cdn/legal/Slite%20-%20End%20User%20Terms%20of%20Service%20Updated%20March%202025.pdf"
+            class="home__link"
+          >
+            User terms
+          </a>
+        </li>
+      </ul>
     </footer>
   </div>
 </template>
@@ -75,6 +111,7 @@ const initializedMatterEngine = ref(false);
 
 const initMatterPhysicsEngine = () => {
   const integrations = [
+    "attio",
     "web",
     "intercom",
     "notion",
@@ -85,6 +122,10 @@ const initMatterPhysicsEngine = () => {
     "github",
     "confluence",
     "google-drive",
+    "asana",
+    "gitlab",
+    "sharepoint",
+    "git",
   ];
 
   const Engine = Matter.Engine;
@@ -130,26 +171,24 @@ const initMatterPhysicsEngine = () => {
   // Create rigid bodies
   const bodiesArray = [];
 
-  for (let index = 0; index < 2; index++) {
-    integrations.forEach((integration) => {
-      const circle = Bodies.circle(
-        Math.random() * containerWidth,
-        -containerHeight * 0.5,
-        circleSize,
-        {
-          render: {
-            sprite: {
-              texture: `images/icons/${integration}.svg`,
-              xScale: circleScale,
-              yScale: circleScale,
-            },
+  integrations.forEach((integration) => {
+    const circle = Bodies.circle(
+      Math.random() * containerWidth,
+      -containerHeight * 0.5,
+      circleSize,
+      {
+        render: {
+          sprite: {
+            texture: `images/icons/${integration}.svg`,
+            xScale: circleScale,
+            yScale: circleScale,
           },
-        }
-      );
-      circle.restitution = 0.7;
-      bodiesArray.push(circle);
-    });
-  }
+        },
+      }
+    );
+    circle.restitution = 0.7;
+    bodiesArray.push(circle);
+  });
 
   // Create boundaries scaled to container size
   const ground = Bodies.rectangle(
@@ -243,82 +282,9 @@ onMounted(() => {
     initMatterPhysicsEngine();
     initializedMatterEngine.value = true;
   }
-
-  // let prevWidth = window.innerWidth;
-  // window.addEventListener("resize", () => {
-  //   const newWidth = window.innerWidth;
-  //   if (newWidth === prevWidth) return;
-
-  //   const container = document.getElementById("js-apps");
-  //   if (container) container.innerHTML = "";
-  //   // initMatterPhysicsEngine();
-
-  //   prevWidth = newWidth;
-  // });
 });
 </script>
 
 <style lang="scss" scoped>
-.home {
-  height: 100dvh;
-  padding: 8rem 2rem 2rem;
-
-  .header {
-    margin: 0 auto;
-    width: fit-content;
-
-    .nav__menu {
-      display: inline-flex;
-      list-style: none;
-      padding: 0;
-    }
-  }
-
-  .hero {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    gap: 24px;
-    border: 1px dashed #cdcdcd75;
-    margin: 60px auto 0;
-    width: 100%;
-    height: 77vh;
-    max-width: 1280px;
-    border-radius: 50px;
-    overflow: hidden;
-
-    &__label {
-      text-transform: uppercase;
-      margin-top: 8.6rem;
-      visibility: hidden;
-      color: line;
-      background: linear-gradient(
-        to right,
-        var(--color-pink-nebula) 0%,
-        var(--color-pink-moon) 30%,
-        var(--color-light-blue) 100%
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    &__body {
-      max-width: 760px;
-    }
-
-    &__button {
-      margin-top: 12px;
-      z-index: 2;
-    }
-
-    &__apps {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
+@import "@/assets/scss/pages/home";
 </style>
