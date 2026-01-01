@@ -75,8 +75,8 @@
           <h2 class="u-text-h1">240 hours reclaimed</h2>
           <p class="wrapped-card__body">
             A full month ~ 20 days of work reclaimed. Instead of hunting for
-            answers, you helped customers, solved problems, and kept the team
-            moving.
+            answers, you helped customers, solved problems fast, and kept the
+            team moving.
           </p>
           <button class="wrapped-card__button c-button">Share story</button>
         </div>
@@ -557,7 +557,7 @@
                 “I’m glad to hear that, you can reach out if you have any other
                 issues.”
               </span>
-              x 180 times 😅
+              x 203 times 🤯
             </p>
           </div>
           <div class="wrapped-card__card wrapped-card__card--small">
@@ -565,10 +565,353 @@
               <span class="wrapped-card__card-gradient">
                 “Alright, I’ll look into that shortly.”
               </span>
-              x 144 times 😅
+              x 132 times 😅
             </p>
           </div>
         </div>
+      </section>
+      <section class="wrapped-card wrapped-card--split wrapped-card--blue">
+        <div class="wrapped-card__copy">
+          <span class="wrapped-card__label u-text-xs">Knowledge creator</span>
+          <h2 class="u-text-h1">18 Docs created</h2>
+          <p class="wrapped-card__body">
+            You authored 18 documentation pages in Slite this year, and your
+            'CAC Lookup Guide' was viewed 731 times by 56 teammates. You're
+            literally writing the playbook.
+          </p>
+          <button class="wrapped-card__button c-button">Share story</button>
+        </div>
+        <svg
+          width="414"
+          height="487"
+          viewBox="0 0 414 487"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="265.826"
+            cy="346.646"
+            r="35.4725"
+            transform="rotate(33.5788 265.826 346.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="256.879"
+            cy="342.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 256.879 342.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="364.826"
+            cy="348.646"
+            r="35.4725"
+            transform="rotate(33.5788 364.826 348.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="355.879"
+            cy="344.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 355.879 344.172)"
+            fill="#FFD2E1"
+          />
+          <circle
+            cx="265.826"
+            cy="246.646"
+            r="35.4725"
+            transform="rotate(33.5788 265.826 246.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="256.879"
+            cy="242.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 256.879 242.172)"
+            fill="#F7F0E5"
+          />
+          <circle
+            cx="364.826"
+            cy="248.646"
+            r="35.4725"
+            transform="rotate(33.5788 364.826 248.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="355.879"
+            cy="244.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 355.879 244.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="265.826"
+            cy="152.646"
+            r="35.4725"
+            transform="rotate(33.5788 265.826 152.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="256.879"
+            cy="148.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 256.879 148.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="364.826"
+            cy="154.646"
+            r="35.4725"
+            transform="rotate(33.5788 364.826 154.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="355.879"
+            cy="150.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 355.879 150.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="262.826"
+            cy="53.6462"
+            r="35.4725"
+            transform="rotate(33.5788 262.826 53.6462)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="253.879"
+            cy="49.1723"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 253.879 49.1723)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="361.826"
+            cy="55.6462"
+            r="35.4725"
+            transform="rotate(33.5788 361.826 55.6462)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="352.879"
+            cy="51.1723"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 352.879 51.1723)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="65.8264"
+            cy="434.646"
+            r="35.4725"
+            transform="rotate(33.5788 65.8264 434.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="56.8792"
+            cy="430.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 56.8792 430.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="164.826"
+            cy="436.646"
+            r="35.4725"
+            transform="rotate(33.5788 164.826 436.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="155.879"
+            cy="432.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 155.879 432.172)"
+            fill="#EF91F7"
+          />
+          <circle
+            cx="61.8264"
+            cy="347.646"
+            r="35.4725"
+            transform="rotate(33.5788 61.8264 347.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="52.8792"
+            cy="343.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 52.8792 343.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="160.826"
+            cy="349.646"
+            r="35.4725"
+            transform="rotate(33.5788 160.826 349.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="151.879"
+            cy="345.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 151.879 345.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="61.8264"
+            cy="247.646"
+            r="35.4725"
+            transform="rotate(33.5788 61.8264 247.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="52.8792"
+            cy="243.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 52.8792 243.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="160.826"
+            cy="249.646"
+            r="35.4725"
+            transform="rotate(33.5788 160.826 249.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="151.879"
+            cy="245.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 151.879 245.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="61.8264"
+            cy="153.646"
+            r="35.4725"
+            transform="rotate(33.5788 61.8264 153.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="52.8792"
+            cy="149.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 52.8792 149.172)"
+            fill="#7FD1FE"
+          />
+          <circle
+            cx="160.826"
+            cy="155.646"
+            r="35.4725"
+            transform="rotate(33.5788 160.826 155.646)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="151.879"
+            cy="151.172"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 151.879 151.172)"
+            fill="#FF824D"
+          />
+          <circle
+            cx="58.8264"
+            cy="54.6462"
+            r="35.4725"
+            transform="rotate(33.5788 58.8264 54.6462)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="49.8792"
+            cy="50.1723"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 49.8792 50.1723)"
+            fill="#EF91F7"
+          />
+          <circle
+            cx="157.826"
+            cy="56.6462"
+            r="35.4725"
+            transform="rotate(33.5788 157.826 56.6462)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="148.879"
+            cy="52.1723"
+            rx="35.4725"
+            ry="35.4724"
+            transform="rotate(33.5788 148.879 52.1723)"
+            fill="#7FD1FE"
+          />
+        </svg>
+      </section>
+      <section
+        class="wrapped-card wrapped-card--split wrapped-card--summary wrapped-card--blue"
+      >
+        <div class="wrapped-card__copy">
+          <span class="wrapped-card__label u-text-xs">your 2025 wrapped</span>
+          <p class="u-text-h1">
+            <span class="wrapped-card__copy-gradient">3,520 searches</span>
+            🤯
+          </p>
+          <p class="u-text-h2">
+            <span
+              class="wrapped-card__copy-gradient wrapped-card__copy-gradient--orange"
+              >240 hours reclaimed</span
+            >
+            💆🏼
+          </p>
+          <p class="u-text-h3">
+            <span
+              class="wrapped-card__copy-gradient wrapped-card__copy-gradient--pink"
+            >
+              89% resolution rate
+            </span>
+            ⚡
+          </p>
+          <button class="wrapped-card__button c-button">
+            Share your wrapped
+          </button>
+        </div>
+        <svg
+          width="592"
+          height="515"
+          viewBox="0 0 592 515"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <ellipse
+            cx="386.362"
+            cy="316.792"
+            rx="195.586"
+            ry="195.586"
+            transform="rotate(33.5788 386.362 316.792)"
+            fill="#232323"
+          />
+          <ellipse
+            cx="271.124"
+            cy="271.123"
+            rx="195.586"
+            ry="195.586"
+            transform="rotate(33.5788 271.124 271.123)"
+            fill="#176BE5"
+          />
+        </svg>
       </section>
     </main>
     <footer class="footer">
@@ -805,7 +1148,6 @@ onMounted(() => {
 
     &__label {
       text-transform: uppercase;
-      color: line;
       background: linear-gradient(
         to right,
         var(--color-pink-nebula) 0%,
@@ -855,7 +1197,7 @@ onMounted(() => {
       }
 
       &-gradient {
-        color: line;
+        color: transparent;
         background: linear-gradient(
           to right,
           var(--color-space-grey) 0%,
@@ -903,6 +1245,45 @@ onMounted(() => {
         @keyframes scaleup {
           to {
             transform: translateY(80%) scale(1);
+          }
+        }
+      }
+    }
+
+    &--summary {
+      .wrapped-card__copy {
+        display: grid;
+        gap: 4rem;
+        max-width: 54rem;
+        flex-shrink: 0;
+
+        &-gradient {
+          background: linear-gradient(
+            to right,
+            var(--color-light-blue) 24%,
+            var(--color-pink-moon) 65%
+          );
+          background-clip: text;
+          color: transparent;
+
+          &--orange {
+            background: linear-gradient(
+              to right,
+              var(--color-pink-moon) 33%,
+              var(--color-saturn-orange) 100%
+            );
+            background-clip: text;
+            color: transparent;
+          }
+
+          &--pink {
+            background: linear-gradient(
+              to right,
+              var(--color-cream) 39%,
+              var(--color-pink-nebula) 88%
+            );
+            background-clip: text;
+            color: transparent;
           }
         }
       }
