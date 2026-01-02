@@ -65,7 +65,7 @@
     <main>
       <section class="home__hero">
         <span class="home__hero-label u-text-xs">YOUR YEAR with SUPER</span>
-        <h1 class="u-text-h1">Super Wrapped 2025</h1>
+        <h1 class="u-text-h1">2025 Wrapped</h1>
         <p class="home__hero-body">
           A look back at the moments, patterns, and impact that shaped your year
           at work. We’re spotlighting the small moments, big wins, and quiet
@@ -286,5 +286,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/pages/home";
+@use "@/assets/scss/pages/home";
 </style>

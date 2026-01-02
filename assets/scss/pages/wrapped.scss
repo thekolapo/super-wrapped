@@ -1,0 +1,266 @@
+.wrapped {
+  height: 100dvh;
+  padding: 4rem 2rem 2rem;
+
+  &__header {
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+  &__nav-menu {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  &-progress {
+    display: flex;
+    width: fit-content;
+    margin: 2.8rem auto 0;
+
+    &__list {
+      display: inline-flex;
+      list-style: none;
+      gap: 1rem;
+      padding: 0;
+    }
+
+    &__step {
+      width: 3rem;
+      height: 0.2rem;
+      border-radius: 5rem;
+      background-color: #b8b8b8;
+      transition: 0.2s ease-out;
+
+      &--active {
+        background-color: var(--color-pink-nebula);
+      }
+    }
+  }
+
+  &-carousel__cell {
+    width: 100%;
+  }
+
+  &-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+    border: 1px dashed #cdcdcd75;
+    margin: 5rem auto 0;
+    width: 100%;
+    // height: 75vh;
+    min-height: 72rem;
+    max-width: 1280px;
+    border-radius: 50px;
+    padding: 14rem 9.2rem 0;
+    overflow: hidden;
+
+    &__copy {
+      display: flex;
+      gap: 24px;
+      flex-direction: column;
+      max-width: 48rem;
+    }
+
+    &__label {
+      text-transform: uppercase;
+      background: linear-gradient(
+        to right,
+        var(--color-pink-nebula) 0%,
+        var(--color-pink-moon) 30%,
+        var(--color-light-blue) 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    &__body {
+      max-width: 740px;
+    }
+
+    &__button {
+      margin-top: 12px;
+    }
+
+    &__apps {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin-top: -14rem;
+    }
+
+    &__cardswrapper {
+      display: grid;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    &__card {
+      padding: 4.5rem 5.4rem;
+      background: white;
+      color: var(--color-space-grey);
+      border-radius: 10px;
+      border: 0.5px dashed rgba(0, 0, 0, 0.5);
+      text-align: left;
+
+      &:first-child {
+        transform: rotate(-0.8deg);
+      }
+
+      &:last-child {
+        transform: rotate(0.8deg);
+      }
+
+      &-gradient {
+        color: transparent;
+        background: linear-gradient(
+          to right,
+          var(--color-space-grey) 0%,
+          var(--color-saturn-orange) 30%,
+          var(--color-neptune-blue) 60%,
+          var(--color-pink-nebula) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      &--small {
+        padding: 2.5rem 5.4rem;
+      }
+    }
+
+    &--split {
+      display: flex;
+      flex-direction: row;
+      text-align: left;
+      justify-content: space-between;
+      padding-top: 0;
+    }
+
+    &--intro {
+      padding-top: 8.2rem;
+
+      &::before {
+        position: absolute;
+        content: "";
+        width: 1550px;
+        height: 1550px;
+        background: white;
+        bottom: 0;
+        border-radius: 100%;
+        padding-top: 10rem;
+        font-size: 7rem;
+        background: var(--color-saturn-orange);
+        filter: blur(10px);
+        transition: 1.2s ease-in-out;
+        animation: scaleup 1.2s var(--ease-out-expo) forwards;
+        transform: translateY(95%) scale(0.5);
+
+        @keyframes scaleup {
+          to {
+            transform: translateY(80%) scale(1);
+          }
+        }
+      }
+    }
+
+    &--summary {
+      .wrapped-card__copy {
+        display: grid;
+        gap: 4rem;
+        max-width: 54rem;
+        flex-shrink: 0;
+
+        &-gradient {
+          background: linear-gradient(
+            to right,
+            var(--color-light-blue) 24%,
+            var(--color-pink-moon) 65%
+          );
+          background-clip: text;
+          color: transparent;
+
+          &--orange {
+            background: linear-gradient(
+              to right,
+              var(--color-pink-moon) 33%,
+              var(--color-saturn-orange) 100%
+            );
+            background-clip: text;
+            color: transparent;
+          }
+
+          &--pink {
+            background: linear-gradient(
+              to right,
+              var(--color-cream) 39%,
+              var(--color-pink-nebula) 88%
+            );
+            background-clip: text;
+            color: transparent;
+          }
+        }
+      }
+    }
+
+    &--cream {
+      background: var(--color-cream);
+    }
+
+    &--blue {
+      background: var(--color-neptune-blue);
+    }
+
+    &--pink {
+      background: var(--color-pink-nebula);
+    }
+
+    &--cream,
+    &--pink {
+      color: var(--color-space-grey);
+
+      .u-text-h1 {
+        color: var(--color-space-grey);
+      }
+    }
+  }
+
+  &__scroll-buttons {
+    position: absolute;
+    top: 45%;
+    width: 90vw;
+    left: calc(-45vw + 50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  &__scroll-button {
+    padding: 2rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background-color: transparent;
+    pointer-events: auto;
+
+    &:hover {
+      background-color: white;
+      transition: 0.5s ease-in-out;
+
+      svg path {
+        fill: black;
+        transition: 0.5s ease-in-out;
+      }
+    }
+  }
+
+  &-card {
+    // display: none;
+    // visibility: hidden;
+  }
+}

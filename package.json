@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nuxt/nitro": "^0.10.0",
+    "flickity": "^3.0.0",
     "matter-js": "^0.20.0",
     "nuxt": "^3.15.3",
     "sass": "^1.83.4",
