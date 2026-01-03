@@ -72,7 +72,7 @@
             </p>
             <button
               class="wrapped-card__button c-button"
-              @click="moveSlide(SlideDirection.NEXT)"
+              @click="handleNavigationButtonClick(SlideDirection.NEXT)"
             >
               Let's begin
             </button>
@@ -80,15 +80,20 @@
         </div>
         <div class="wrapped-carousel__cell">
           <article class="wrapped-card wrapped-card--cream">
-            <h2 class="u-text-h1 u-text-h1--alt">3,520</h2>
+            <h2 class="u-text-h1 u-text-h1--alt">
+              {{ searchesValue }}
+            </h2>
             <p class="wrapped-card__body">
-              You made 3,520 searches with Super this year. That’s thousands of
+              You made 2,975 searches with Super this year. That’s thousands of
               moments you found answers fast without breaking your flow.
             </p>
             <button class="wrapped-card__button c-button c-button--alt">
               Share this story
             </button>
-            <div id="js-apps" class="wrapped-card__apps" />
+            <div
+              id="js-matter-physics"
+              class="wrapped-card__matter-container"
+            />
           </article>
         </div>
         <div class="wrapped-carousel__cell">
@@ -962,7 +967,7 @@
       <div class="wrapped__scroll-buttons">
         <button
           class="wrapped__scroll-button"
-          @click="moveSlide(SlideDirection.PREVIOUS)"
+          @click="handleNavigationButtonClick(SlideDirection.PREVIOUS)"
         >
           <svg
             width="27"
@@ -980,7 +985,7 @@
         </button>
         <button
           class="wrapped__scroll-button"
-          @click="moveSlide(SlideDirection.NEXT)"
+          @click="handleNavigationButtonClick(SlideDirection.NEXT)"
         >
           <svg
             width="27"
@@ -1002,8 +1007,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, computed } from "vue";
 import Matter from "matter-js";
+import { useMatterPhysics } from "~/composables/useMatterPhysics";
+
+const { initPhysicsEngine, destroyPhysicsEngine } = useMatterPhysics();
 
 const wrappedCarousel = ref(null);
 const SlideDirection = {
@@ -1015,205 +1023,67 @@ const flickity = ref(null);
 const slideIndex = ref(0);
 const slideCount = ref(0);
 
-const initMatterPhysicsEngine = () => {
-  const searchData = [
-    { name: "JAN : 245", color: "#EF91F7" },
-    { name: "FEB : 273", color: "##FF824D" },
-    { name: "MAR : 221", color: "#176BE5" },
-    { name: "APR : 152", color: "#EF91F7" },
-    { name: "MAY : 183", color: "#FF9FBE" },
-    { name: "JUN : 192", color: "#232323" },
-    { name: "JUL : 190", color: "#176BE5" },
-    { name: "AUG : 180", color: "#FF824D" },
-    { name: "SEP : 220", color: "#232323" },
-    { name: "OCT : 200", color: "#176BE5" },
-    { name: "NOV : 210", color: "#54C3FF" },
-    { name: "DEC : 195", color: "#FF9FBE" },
-  ];
+const searchData = [
+  { name: "JAN : 245", color: "#EF91F7" },
+  { name: "FEB : 273", color: "##FF824D" },
+  { name: "MAR : 221", color: "#176BE5" },
+  { name: "APR : 152", color: "#EF91F7" },
+  { name: "MAY : 183", color: "#FF9FBE" },
+  { name: "JUN : 192", color: "#232323" },
+  { name: "JUL : 190", color: "#176BE5" },
+  { name: "AUG : 180", color: "#FF824D" },
+  { name: "SEP : 220", color: "#232323" },
+  { name: "OCT : 200", color: "#176BE5" },
+  { name: "NOV : 210", color: "#54C3FF" },
+  { name: "DEC : 195", color: "#FF9FBE" },
+];
 
-  const Engine = Matter.Engine;
-  const Render = Matter.Render;
-  const Runner = Matter.Runner;
-  const MouseConstraint = Matter.MouseConstraint;
-  const Mouse = Matter.Mouse;
-  const Composite = Matter.Composite;
-  const Bodies = Matter.Bodies;
-  const Events = Matter.Events;
-
-  // Create an engine
-  const engine = Engine.create();
-  engine.world.gravity.y = 1.1;
-
-  // Get container and calculate dimensions
-  const container = document.getElementById("js-apps");
-  let containerWidth = container.offsetWidth;
-  let containerHeight = container.offsetHeight || window.innerHeight * 0.6;
-
-  // Calculate circle size based on container width
-  const windowWidth = window.innerWidth;
-  const sizeMultiplier = windowWidth > 720 ? 1 : windowWidth / 750;
-  const baseCircleSize = 55.5;
-  const circleSize = 62 * sizeMultiplier;
-  const circleScale = circleSize / baseCircleSize;
-
-  // Create a renderer
-  const render = Render.create({
-    element: container,
-    engine,
-    options: {
-      width: containerWidth,
-      height: containerHeight,
-      wireframes: false,
-      background: "transparent",
-      pixelRatio: "auto",
-    },
-  });
-
-  // Create rigid bodies
-  const bodiesArray = [];
-
-  searchData.forEach((item) => {
-    const circle = Bodies.circle(
-      Math.random() * containerWidth,
-      -containerHeight * 0.5,
-      circleSize,
-      {
-        // Store custom data
-        label: item.name, // Use built-in label property
-        render: {
-          fillStyle: item.color,
-        },
-      }
-    );
-
-    circle.restitution = 0.7;
-    bodiesArray.push(circle);
-  });
-
-  // Create boundaries
-  const ground = Bodies.rectangle(
-    containerWidth / 2,
-    containerHeight,
-    containerWidth * 1.2,
-    containerHeight * 0.008,
-    {
-      isStatic: true,
-      render: { fillStyle: "transparent" },
-    }
-  );
-
-  const roof = Bodies.rectangle(
-    containerWidth / 2,
-    -containerHeight * 0.7,
-    containerWidth * 1.2,
-    containerHeight * 0.1,
-    {
-      isStatic: true,
-      render: { fillStyle: "transparent" },
-    }
-  );
-
-  const leftWall = Bodies.rectangle(
-    0,
-    containerHeight / 2,
-    containerWidth * 0.01,
-    containerHeight * 2,
-    {
-      isStatic: true,
-      render: { fillStyle: "transparent" },
-    }
-  );
-
-  const rightWall = Bodies.rectangle(
-    containerWidth,
-    containerHeight / 2,
-    containerWidth * 0.01,
-    containerHeight * 2,
-    {
-      isStatic: true,
-      render: { fillStyle: "transparent" },
-    }
-  );
-
-  ground.restitution = leftWall.restitution = rightWall.restitution = 1;
-
-  // Add all bodies to the world
-  Composite.add(engine.world, [
-    ...bodiesArray,
-    ground,
-    roof,
-    leftWall,
-    rightWall,
-  ]);
-
-  Events.on(render, "afterRender", () => {
-    const context = render.context;
-
-    bodiesArray.forEach((body) => {
-      const { x, y } = body.position;
-      const angle = body.angle;
-
-      // Save context state
-      context.save();
-
-      // Translate to ball position and rotate
-      context.translate(x, y);
-      context.rotate(angle);
-
-      // Set text style
-      context.fillStyle = "#FFFFFF";
-      context.font = `${circleSize * 0.3}px UniversalSans, Inter, sans-serif`; // Font size scales with ball
-      context.textAlign = "center";
-      context.textBaseline = "middle";
-
-      // Add text shadow for better readability
-      // context.shadowColor = "rgba(0, 0, 0, 0.3)";
-      // context.shadowBlur = 4;
-      // context.shadowOffsetX = 0;
-      // context.shadowOffsetY = 2;
-
-      // Draw the text (body.label contains the integration name)
-      context.fillText(body.label, 0, 0);
-
-      // Restore context
-      context.restore();
-    });
-  });
-
-  // Add mouse control
-  const mouse = Mouse.create(render.canvas);
-  const mouseConstraint = MouseConstraint.create(engine, {
-    mouse,
-    constraint: {
-      stiffness: 0.2,
-      render: {
-        visible: false,
-      },
-    },
-  });
-
-  // Disable scrolling when interacting with canvas
-  mouseConstraint.mouse.element.removeEventListener(
-    "mousewheel",
-    mouseConstraint.mouse.mousewheel
-  );
-  mouseConstraint.mouse.element.removeEventListener(
-    "DOMMouseScroll",
-    mouseConstraint.mouse.mousewheel
-  );
-
-  Composite.add(engine.world, mouseConstraint);
-  render.mouse = mouse;
-
-  // Run the renderer and engine
-  Render.run(render);
-  const runner = Runner.create();
-  Runner.run(runner, engine);
+const moveSlide = (direction) => {
+  flickity.value[direction === SlideDirection.NEXT ? "next" : "previous"]();
 };
 
-const moveSlide = async (direction) => {
-  flickity.value[direction === SlideDirection.NEXT ? "next" : "previous"]();
+const handleNavigationButtonClick = (direction) => {
+  moveSlide(direction);
   slideIndex.value = flickity.value.selectedIndex;
+
+  switch (slideIndex.value) {
+    case 1:
+      initSearchesCounterAnimation();
+
+      if (!isMatterEngineInitialized.value) {
+        initPhysicsEngine("js-matter-physics", searchData, {
+          useSprite: false,
+        });
+        isMatterEngineInitialized.value = true;
+      }
+      break;
+
+    default:
+      break;
+  }
+};
+
+const searchesValue = ref(0);
+
+const initSearchesCounterAnimation = () => {
+  const target = 2975;
+  const duration = 1500;
+  let startTime = null;
+
+  const animate = (timestamp) => {
+    if (!startTime) startTime = timestamp;
+
+    const progress = timestamp - startTime;
+    const percentage = Math.min(progress / duration, 1);
+
+    searchesValue.value = Math.floor(percentage * target);
+
+    if (percentage < 1) {
+      requestAnimationFrame(animate);
+    }
+  };
+
+  requestAnimationFrame(animate);
 };
 
 onMounted(async () => {
@@ -1230,11 +1100,6 @@ onMounted(async () => {
   });
 
   slideCount.value = flickity.value.slides.length;
-
-  if (!isMatterEngineInitialized.value) {
-    initMatterPhysicsEngine();
-    isMatterEngineInitialized.value = true;
-  }
 });
 
 onUnmounted(() => {

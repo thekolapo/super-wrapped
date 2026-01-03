@@ -106,180 +106,34 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import Matter from "matter-js";
+import { useMatterPhysics } from "~/composables/useMatterPhysics";
 
+const { initPhysicsEngine, destroyPhysicsEngine } = useMatterPhysics();
 const initializedMatterEngine = ref(false);
-
-const initMatterPhysicsEngine = () => {
-  const integrations = [
-    "attio",
-    "web",
-    "intercom",
-    "notion",
-    "jira",
-    "slite",
-    "slack",
-    "linear",
-    "github",
-    "confluence",
-    "google-drive",
-    "asana",
-    "gitlab",
-    "sharepoint",
-    "git",
-  ];
-
-  const Engine = Matter.Engine;
-  const Render = Matter.Render;
-  const Runner = Matter.Runner;
-  const MouseConstraint = Matter.MouseConstraint;
-  const Mouse = Matter.Mouse;
-  const Composite = Matter.Composite;
-  const Bodies = Matter.Bodies;
-  const Events = Matter.Events;
-
-  // Create an engine
-  const engine = Engine.create();
-  engine.world.gravity.y = 1.1;
-
-  // Get container and calculate dimensions
-  const container = document.getElementById("js-apps");
-  let containerWidth = container.offsetWidth;
-  let containerHeight = container.offsetHeight || window.innerHeight * 0.6; // Fallback height if not set
-
-  // Calculate circle size based on container width
-  const windowWidth = window.innerWidth;
-  const sizeMultiplier = windowWidth > 720 ? 1 : windowWidth / 750;
-  const baseCircleSize = 55.5;
-  const circleSize = 62 * sizeMultiplier;
-  const circleScale = circleSize / baseCircleSize;
-
-  // Create a renderer
-  const render = Render.create({
-    element: container,
-    engine,
-    options: {
-      width: containerWidth,
-      height: containerHeight,
-      wireframes: false,
-      background: "transparent",
-      pixelRatio: "auto",
-    },
-  });
-
-  // render.canvas.style.pointerEvents = "none";
-
-  // Create rigid bodies
-  const bodiesArray = [];
-
-  integrations.forEach((integration) => {
-    const circle = Bodies.circle(
-      Math.random() * containerWidth,
-      -containerHeight * 0.5,
-      circleSize,
-      {
-        render: {
-          sprite: {
-            texture: `images/icons/${integration}.svg`,
-            xScale: circleScale,
-            yScale: circleScale,
-          },
-        },
-      }
-    );
-    circle.restitution = 0.7;
-    bodiesArray.push(circle);
-  });
-
-  // Create boundaries scaled to container size
-  const ground = Bodies.rectangle(
-    containerWidth / 2,
-    containerHeight,
-    containerWidth * 1.2,
-    containerHeight * 0.008,
-    {
-      isStatic: true,
-      render: { fillStyle: "transparent" },
-    }
-  );
-
-  const roof = Bodies.rectangle(
-    containerWidth / 2,
-    -containerHeight * 0.7,
-    containerWidth * 1.2,
-    containerHeight * 0.1,
-    {
-      isStatic: true,
-      render: { fillStyle: "white" },
-    }
-  );
-
-  const leftWall = Bodies.rectangle(
-    0,
-    containerHeight / 2,
-    containerWidth * 0.01,
-    containerHeight * 2,
-    {
-      isStatic: true,
-      render: { fillStyle: "transparent" },
-    }
-  );
-
-  const rightWall = Bodies.rectangle(
-    containerWidth,
-    containerHeight / 2,
-    containerWidth * 0.01,
-    containerHeight * 2,
-    {
-      isStatic: true,
-      render: { fillStyle: "transparent" },
-    }
-  );
-
-  ground.restitution = leftWall.restitution = rightWall.restitution = 1;
-
-  // Add all bodies to the world
-  Composite.add(engine.world, [
-    ...bodiesArray,
-    ground,
-    roof,
-    leftWall,
-    rightWall,
-  ]);
-
-  // Add mouse control
-  const mouse = Mouse.create(render.canvas);
-  const mouseConstraint = MouseConstraint.create(engine, {
-    mouse,
-    constraint: {
-      stiffness: 0.2,
-      render: {
-        visible: false,
-      },
-    },
-  });
-
-  // Disable scrolling when interacting with canvas
-  mouseConstraint.mouse.element.removeEventListener(
-    "mousewheel",
-    mouseConstraint.mouse.mousewheel
-  );
-  mouseConstraint.mouse.element.removeEventListener(
-    "DOMMouseScroll",
-    mouseConstraint.mouse.mousewheel
-  );
-
-  Composite.add(engine.world, mouseConstraint);
-  render.mouse = mouse;
-
-  // Run the renderer and engine
-  Render.run(render);
-  const runner = Runner.create();
-  Runner.run(runner, engine);
-};
+const integrations = [
+  { texture: "images/icons/attio.svg" },
+  { texture: "images/icons/web.svg" },
+  { texture: "images/icons/intercom.svg" },
+  { texture: "images/icons/notion.svg" },
+  { texture: "images/icons/jira.svg" },
+  { texture: "images/icons/slite.svg" },
+  { texture: "images/icons/slack.svg" },
+  { texture: "images/icons/linear.svg" },
+  { texture: "images/icons/github.svg" },
+  { texture: "images/icons/confluence.svg" },
+  { texture: "images/icons/google-drive.svg" },
+  { texture: "images/icons/asana.svg" },
+  { texture: "images/icons/gitlab.svg" },
+  { texture: "images/icons/sharepoint.svg" },
+  { texture: "images/icons/git.svg" },
+];
 
 onMounted(() => {
   if (!initializedMatterEngine.value) {
-    initMatterPhysicsEngine();
+    initPhysicsEngine("js-apps", integrations, {
+      useSprite: true,
+      circleSize: 62,
+    });
     initializedMatterEngine.value = true;
   }
 });
