@@ -124,6 +124,43 @@
       max-width: 740px;
     }
 
+    &__animated-text {
+      opacity: 0;
+
+      div {
+        display: inline-block;
+        white-space: pre;
+      }
+
+      span {
+        --delay: 0.1s;
+        position: relative;
+        display: inline-block;
+        transform: translateY(50%);
+        opacity: 0;
+        animation: slide 0.8s var(--ease-out-expo) forwards var(--delay),
+          fade 1s linear forwards var(--delay);
+
+        @for $i from 1 through 10 {
+          &:nth-child(#{$i}) {
+            --delay: #{$i * 0.14s};
+          }
+        }
+      }
+
+      @keyframes slide {
+        to {
+          transform: translateY(0%);
+        }
+      }
+
+      @keyframes fade {
+        to {
+          opacity: 1;
+        }
+      }
+    }
+
     &__button {
       margin-top: 12px;
     }
@@ -252,7 +289,7 @@
         background: var(--color-saturn-orange);
         filter: blur(10px);
         transition: 1.2s ease-in-out;
-        animation: scaleup 1.2s var(--ease-out-expo) forwards;
+        animation: scaleup 1.6s var(--ease-out-expo) forwards;
         transform: translateY(95%) scale(0.5);
 
         @keyframes scaleup {
