@@ -1,6 +1,6 @@
 .c-button {
   border-radius: 50px;
-  padding: 13px 21px;
+  padding: 1.3rem 2.1rem;
   border: none;
   color: black;
   background-color: white;
@@ -11,6 +11,11 @@
   width: fit-content;
   text-align: center;
   z-index: 2;
+
+  @media only screen and (max-width: 480px) {
+    padding: 1rem 1.8rem;
+    font-size: 1.5rem;
+  }
 
   &--alt {
     color: white;

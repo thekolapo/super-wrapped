@@ -2,6 +2,10 @@
   height: 100dvh;
   padding: 4rem 2rem 2rem;
 
+  @media only screen and (max-width: 500px) {
+    padding: 1.8rem 1.2rem;
+  }
+
   &__header {
     margin: 0 auto;
     width: fit-content;
@@ -13,10 +17,20 @@
     padding: 0;
   }
 
+  &__nav-logo {
+    @media only screen and (max-width: 500px) {
+      width: 7.4rem;
+    }
+  }
+
   &-progress {
     display: flex;
     width: fit-content;
     margin: 2.8rem auto 0;
+
+    @media only screen and (max-width: 500px) {
+      margin-top: 1.5rem;
+    }
 
     &__list {
       display: inline-flex;
@@ -32,6 +46,11 @@
       background-color: #b8b8b8;
       transition: 0.2s ease-out;
 
+      @media only screen and (max-width: 500px) {
+        width: 2.4rem;
+        height: 0.12rem;
+      }
+
       &--active {
         background-color: var(--color-pink-nebula);
       }
@@ -40,9 +59,16 @@
 
   &-carousel__cell {
     width: 100%;
+
+    @media only screen and (max-width: 720px) {
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+    }
   }
 
   &-card {
+    --top-padding: 14rem;
     position: relative;
     display: flex;
     align-items: center;
@@ -52,18 +78,33 @@
     border: 1px dashed #cdcdcd75;
     margin: 5rem auto 0;
     width: 100%;
-    // height: 75vh;
     min-height: 72rem;
     max-width: 1280px;
     border-radius: 50px;
-    padding: 14rem 9.2rem 0;
+    padding: var(--top-padding) 9.2rem 0;
     overflow: hidden;
+
+    @media only screen and (max-width: 720px) {
+      --top-padding: 4rem;
+      margin-top: 2.8rem;
+      padding: var(--top-padding) 2.8rem 0;
+    }
+
+    @media only screen and (max-width: 480px) {
+      min-height: 54rem;
+      padding: var(--top-padding) 1.5rem 3rem;
+    }
 
     &__copy {
       display: flex;
       gap: 24px;
       flex-direction: column;
       max-width: 48rem;
+
+      @media only screen and (max-width: 720px) {
+        align-items: center;
+        text-align: center;
+      }
     }
 
     &__label {
@@ -91,13 +132,25 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      margin-top: -14rem;
+      margin-top: calc(-1 * var(--top-padding));
+    }
+
+    &__illustration {
+      @media only screen and (max-width: 720px) {
+        width: 76%;
+        height: auto;
+        margin: 0 auto;
+      }
     }
 
     &__cardswrapper {
       display: grid;
       gap: 3rem;
       margin-top: 3rem;
+
+      @media only screen and (max-width: 500px) {
+        margin-top: 1rem;
+      }
     }
 
     &__card {
@@ -133,6 +186,10 @@
       &--small {
         padding: 2.5rem 5.4rem;
       }
+
+      @media only screen and (max-width: 500px) {
+        padding: 2rem;
+      }
     }
 
     &--split {
@@ -141,16 +198,26 @@
       text-align: left;
       justify-content: space-between;
       padding-top: 0;
+
+      @media only screen and (max-width: 720px) {
+        flex-wrap: wrap;
+        padding-top: var(--top-padding);
+      }
     }
 
     &--intro {
       padding-top: 8.2rem;
 
+      @media only screen and (max-width: 500px) {
+        padding-top: 4.2rem;
+      }
+
       &::before {
+        --size: 155rem;
         position: absolute;
         content: "";
-        width: 1550px;
-        height: 1550px;
+        width: var(--size);
+        height: var(--size);
         background: white;
         bottom: 0;
         border-radius: 100%;
@@ -167,6 +234,10 @@
             transform: translateY(80%) scale(1);
           }
         }
+
+        @media only screen and (max-width: 500px) {
+          --size: 100rem;
+        }
       }
     }
 
@@ -175,7 +246,7 @@
         display: grid;
         gap: 4rem;
         max-width: 54rem;
-        flex-shrink: 0;
+        text-align: left;
 
         &-gradient {
           background: linear-gradient(
@@ -207,6 +278,10 @@
           }
         }
       }
+
+      .wrapped-card__illustration {
+        margin: unset;
+      }
     }
 
     &--cream {
@@ -233,12 +308,17 @@
 
   &__scroll-buttons {
     position: absolute;
-    top: 45%;
-    width: 90vw;
-    left: calc(-45vw + 50%);
+    // top: 45%;
+    top: 44rem;
+    width: 94vw;
+    left: calc(-47vw + 50%);
     display: flex;
     justify-content: space-between;
     pointer-events: none;
+
+    @media only screen and (max-width: 480px) {
+      top: 34rem;
+    }
   }
 
   &__scroll-button {
@@ -257,10 +337,5 @@
         transition: 0.5s ease-in-out;
       }
     }
-  }
-
-  &-card {
-    // display: none;
-    // visibility: hidden;
   }
 }

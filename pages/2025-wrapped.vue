@@ -4,8 +4,9 @@
       <nav class="wrapped__nav" aria-label="Primary Navigation">
         <ul class="wrapped__nav-menu">
           <li>
-            <a href="/" target="">
+            <a href="/2025-wrapped">
               <svg
+                class="wrapped__nav-logo"
                 width="84"
                 height="28"
                 viewBox="0 0 84 28"
@@ -69,7 +70,12 @@
             <p class="wrapped-card__body">
               Here’s how you worked, built and made impact this year.
             </p>
-            <button class="wrapped-card__button c-button">Let's begin</button>
+            <button
+              class="wrapped-card__button c-button"
+              @click="moveSlide(SlideDirection.NEXT)"
+            >
+              Let's begin
+            </button>
           </article>
         </div>
         <div class="wrapped-carousel__cell">
@@ -82,11 +88,7 @@
             <button class="wrapped-card__button c-button c-button--alt">
               Share this story
             </button>
-            <div
-              ref="articleIntegrations"
-              id="js-apps"
-              class="wrapped-card__apps"
-            />
+            <div id="js-apps" class="wrapped-card__apps" />
           </article>
         </div>
         <div class="wrapped-carousel__cell">
@@ -101,12 +103,14 @@
               <button class="wrapped-card__button c-button">Share story</button>
             </div>
             <svg
+              class="wrapped-card__illustration"
               width="418"
               height="487"
               viewBox="0 0 418 487"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              aria-label="hidden"
+              aria-hidden="true"
+              focusable="false"
             >
               <circle
                 cx="269.827"
@@ -426,6 +430,7 @@
               </button>
             </div>
             <svg
+              class="wrapped-card__illustration"
               width="542"
               height="501"
               viewBox="0 0 542 501"
@@ -498,6 +503,7 @@
               </button>
             </div>
             <svg
+              class="wrapped-card__illustration"
               width="542"
               height="501"
               viewBox="0 0 542 501"
@@ -561,7 +567,7 @@
             <h2 class="u-text-h1">Your Year in Three Words</h2>
             <div class="wrapped-card__cardswrapper">
               <div class="wrapped-card__card wrapped-card__card--small">
-                <h3 class="wrapped-card__card-gradient u-text-h2 u-text-black">
+                <h3 class="wrapped-card__card-gradient u-text-h3 u-text-black">
                   Refunds . Compliance . Chargeback
                 </h3>
               </div>
@@ -585,7 +591,7 @@
                     “I’m glad to hear that, you can reach out if you have any
                     other issues.”
                   </span>
-                  x 203 times 🤯
+                  x203 times 🤯
                 </p>
               </div>
               <div class="wrapped-card__card wrapped-card__card--small">
@@ -593,7 +599,7 @@
                   <span class="wrapped-card__card-gradient">
                     “Alright, I’ll look into that shortly.”
                   </span>
-                  x 132 times 😅
+                  x132 times 😅
                 </p>
               </div>
             </div>
@@ -614,6 +620,7 @@
               <button class="wrapped-card__button c-button">Share story</button>
             </div>
             <svg
+              class="wrapped-card__illustration"
               width="414"
               height="487"
               viewBox="0 0 414 487"
@@ -898,9 +905,9 @@
             class="wrapped-card wrapped-card--split wrapped-card--summary wrapped-card--blue"
           >
             <div class="wrapped-card__copy">
-              <span class="wrapped-card__label u-text-xs"
-                >your 2025 wrapped</span
-              >
+              <span class="wrapped-card__label u-text-xs">
+                your 2025 wrapped
+              </span>
               <p class="u-text-h1">
                 <span class="wrapped-card__copy-gradient">3,520 searches</span>
                 🤯
@@ -925,6 +932,7 @@
               </button>
             </div>
             <svg
+              class="wrapped-card__illustration"
               width="592"
               height="515"
               viewBox="0 0 592 515"
@@ -1008,17 +1016,19 @@ const slideIndex = ref(0);
 const slideCount = ref(0);
 
 const initMatterPhysicsEngine = () => {
-  const integrations = [
-    "web",
-    "intercom",
-    "notion",
-    "jira",
-    "slite",
-    "slack",
-    "linear",
-    "github",
-    "confluence",
-    "google-drive",
+  const searchData = [
+    { name: "JAN : 245", color: "#EF91F7" },
+    { name: "FEB : 273", color: "##FF824D" },
+    { name: "MAR : 221", color: "#176BE5" },
+    { name: "APR : 152", color: "#EF91F7" },
+    { name: "MAY : 183", color: "#FF9FBE" },
+    { name: "JUN : 192", color: "#232323" },
+    { name: "JUL : 190", color: "#176BE5" },
+    { name: "AUG : 180", color: "#FF824D" },
+    { name: "SEP : 220", color: "#232323" },
+    { name: "OCT : 200", color: "#176BE5" },
+    { name: "NOV : 210", color: "#54C3FF" },
+    { name: "DEC : 195", color: "#FF9FBE" },
   ];
 
   const Engine = Matter.Engine;
@@ -1037,7 +1047,7 @@ const initMatterPhysicsEngine = () => {
   // Get container and calculate dimensions
   const container = document.getElementById("js-apps");
   let containerWidth = container.offsetWidth;
-  let containerHeight = container.offsetHeight || window.innerHeight * 0.6; // Fallback height if not set
+  let containerHeight = container.offsetHeight || window.innerHeight * 0.6;
 
   // Calculate circle size based on container width
   const windowWidth = window.innerWidth;
@@ -1059,29 +1069,28 @@ const initMatterPhysicsEngine = () => {
     },
   });
 
-  // render.canvas.style.pointerEvents = "none";
-
   // Create rigid bodies
   const bodiesArray = [];
 
-  for (let index = 0; index < 2; index++) {
-    integrations.forEach((integration) => {
-      const circle = Bodies.circle(
-        Math.random() * containerWidth,
-        -containerHeight * 0.5,
-        circleSize,
-        {
-          labelText: "GitHub",
-          customColor: "#7FD1FE",
-        }
-      );
+  searchData.forEach((item) => {
+    const circle = Bodies.circle(
+      Math.random() * containerWidth,
+      -containerHeight * 0.5,
+      circleSize,
+      {
+        // Store custom data
+        label: item.name, // Use built-in label property
+        render: {
+          fillStyle: item.color,
+        },
+      }
+    );
 
-      circle.restitution = 0.7;
-      bodiesArray.push(circle);
-    });
-  }
+    circle.restitution = 0.7;
+    bodiesArray.push(circle);
+  });
 
-  // Create boundaries scaled to container size
+  // Create boundaries
   const ground = Bodies.rectangle(
     containerWidth / 2,
     containerHeight,
@@ -1100,7 +1109,7 @@ const initMatterPhysicsEngine = () => {
     containerHeight * 0.1,
     {
       isStatic: true,
-      render: { fillStyle: "white" },
+      render: { fillStyle: "transparent" },
     }
   );
 
@@ -1136,6 +1145,40 @@ const initMatterPhysicsEngine = () => {
     leftWall,
     rightWall,
   ]);
+
+  Events.on(render, "afterRender", () => {
+    const context = render.context;
+
+    bodiesArray.forEach((body) => {
+      const { x, y } = body.position;
+      const angle = body.angle;
+
+      // Save context state
+      context.save();
+
+      // Translate to ball position and rotate
+      context.translate(x, y);
+      context.rotate(angle);
+
+      // Set text style
+      context.fillStyle = "#FFFFFF";
+      context.font = `${circleSize * 0.3}px UniversalSans, Inter, sans-serif`; // Font size scales with ball
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+
+      // Add text shadow for better readability
+      // context.shadowColor = "rgba(0, 0, 0, 0.3)";
+      // context.shadowBlur = 4;
+      // context.shadowOffsetX = 0;
+      // context.shadowOffsetY = 2;
+
+      // Draw the text (body.label contains the integration name)
+      context.fillText(body.label, 0, 0);
+
+      // Restore context
+      context.restore();
+    });
+  });
 
   // Add mouse control
   const mouse = Mouse.create(render.canvas);
