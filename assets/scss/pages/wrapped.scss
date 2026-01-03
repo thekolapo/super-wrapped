@@ -92,7 +92,7 @@
 
     @media only screen and (max-width: 480px) {
       min-height: 54rem;
-      padding: var(--top-padding) 1.5rem 3rem;
+      padding: var(--top-padding) 2.41rem 3rem;
     }
 
     &__copy {
@@ -136,6 +136,32 @@
     }
 
     &__illustration {
+      &--grid {
+        .circle {
+          animation: moveCircle 2.2s var(--ease-out-expo) infinite;
+
+          @for $i from 1 through 20 {
+            &:nth-of-type(#{$i}) {
+              animation-delay: $i * 0.5s;
+            }
+          }
+        }
+
+        @keyframes moveCircle {
+          0% {
+            transform: translate(0);
+          }
+
+          50% {
+            transform: translate(2%, 1%);
+          }
+
+          100% {
+            transform: translate(0);
+          }
+        }
+      }
+
       @media only screen and (max-width: 720px) {
         width: 76%;
         height: auto;

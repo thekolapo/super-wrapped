@@ -108,7 +108,7 @@
               <button class="wrapped-card__button c-button">Share story</button>
             </div>
             <svg
-              class="wrapped-card__illustration"
+              class="wrapped-card__illustration wrapped-card__illustration--grid"
               width="418"
               height="487"
               viewBox="0 0 418 487"
@@ -125,6 +125,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="260.879"
                 cy="429.172"
                 rx="35.4725"
@@ -140,6 +141,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="359.879"
                 cy="431.172"
                 rx="35.4725"
@@ -155,6 +157,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="256.879"
                 cy="342.172"
                 rx="35.4725"
@@ -170,6 +173,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="355.879"
                 cy="344.172"
                 rx="35.4725"
@@ -185,6 +189,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="256.879"
                 cy="242.172"
                 rx="35.4725"
@@ -215,6 +220,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="256.879"
                 cy="148.172"
                 rx="35.4725"
@@ -230,6 +236,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="355.879"
                 cy="150.172"
                 rx="35.4725"
@@ -245,6 +252,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="253.879"
                 cy="49.1723"
                 rx="35.4725"
@@ -260,6 +268,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="352.879"
                 cy="51.1723"
                 rx="35.4725"
@@ -305,6 +314,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="52.8797"
                 cy="343.172"
                 rx="35.4725"
@@ -320,6 +330,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="151.879"
                 cy="345.172"
                 rx="35.4725"
@@ -335,6 +346,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="52.8797"
                 cy="243.172"
                 rx="35.4725"
@@ -350,6 +362,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="151.879"
                 cy="245.172"
                 rx="35.4725"
@@ -365,6 +378,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="52.8797"
                 cy="149.172"
                 rx="35.4725"
@@ -380,6 +394,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="151.879"
                 cy="151.172"
                 rx="35.4725"
@@ -395,6 +410,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="49.8797"
                 cy="50.1723"
                 rx="35.4725"
@@ -410,6 +426,7 @@
                 fill="#232323"
               />
               <ellipse
+                class="circle"
                 cx="148.879"
                 cy="52.1723"
                 rx="35.4725"
@@ -920,8 +937,9 @@
               <p class="u-text-h2">
                 <span
                   class="wrapped-card__copy-gradient wrapped-card__copy-gradient--orange"
-                  >240 hours reclaimed</span
                 >
+                  240 hours reclaimed
+                </span>
                 💆🏼
               </p>
               <p class="u-text-h3">
