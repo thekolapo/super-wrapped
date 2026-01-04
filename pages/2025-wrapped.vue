@@ -70,7 +70,7 @@
               class="wrapped-card__animated-text u-text-h1"
               ref="introHeading"
             >
-              Hi Kolapo, let's unwind together
+              Hi {{ wrappedData.user.firstName }}, let's unwind together
             </h1>
             <p class="wrapped-card__body wrapped-card__animated-text">
               Here's how you worked, built and made impact this year.
@@ -85,12 +85,13 @@
         </div>
         <div class="wrapped-carousel__cell">
           <article class="wrapped-card wrapped-card--cream">
-            <h2 class="u-text-h1 u-text-h1--alt">
+            <h2 class="u-text-h1 u-text-h1--alt u-font-mono">
               {{ searchesValue }}
             </h2>
             <p class="wrapped-card__body wrapped-card__animated-text">
-              You made 2,975 searches with Super this year. That's thousands of
-              moments you found answers fast without breaking your flow.
+              You made {{ wrappedData.searches.total }} searches with Super this
+              year. That's thousands of moments you found answers fast without
+              breaking your flow.
             </p>
             <button class="wrapped-card__button c-button c-button--alt">
               Share this story
@@ -104,8 +105,10 @@
         <div class="wrapped-carousel__cell">
           <WrappedSplitCard
             variant="blue"
-            heading="240 hours reclaimed"
-            body="A full month ~ 20 days of work reclaimed. Instead of hunting for answers, you helped customers, solved problems fast, and kept the team moving."
+            :heading="`${wrappedData.hoursReclaimed} hours reclaimed`"
+            body="A full month ~ 20 days of work reclaimed. Instead of hunting for
+          answers, you helped customers, solved problems fast, and kept the team
+          moving."
             button-text="Share story"
             illustration-class="wrapped-card__illustration--grid"
           />
@@ -114,8 +117,8 @@
           <WrappedSplitCard
             variant="cream"
             label="YOUR PEAK MONTH"
-            heading="May was your Super month ⚡"
-            body="You created 18 support articles in Slite, escalated 23 issues to Jira, and resolved 230 conversations in Intercom – your fastest in just 43 seconds."
+            :heading="`${wrappedData.peakMonth.name} was your Super month ⚡`"
+            :body="`You created ${wrappedData.peakMonth.docsCreated} support articles in Slite, escalated ${wrappedData.peakMonth.escalations.total} issues to ${wrappedData.peakMonth.escalations.tool} , and resolved ${wrappedData.peakMonth.resolvedConversations.total} conversations in ${wrappedData.peakMonth.resolvedConversations.tool} – your fastest in just ${wrappedData.peakMonth.fastestResolutionSeconds} seconds.`"
             button-text="Share story"
             button-class="c-button--alt"
           >
@@ -171,8 +174,14 @@
           <WrappedSplitCard
             variant="pink"
             label="YOUR ARCHETYPE"
-            heading="The Closer ⚡"
-            body="You don't just respond, you resolve. Across 970 Intercom conversations, 89% were solved on first response. Only 2.1% of users share this archetype."
+            :heading="`${wrappedData.archetype.name}`"
+            :body="`You don't just respond, you resolve. Across ${
+              wrappedData.archetype.conversations
+            } Intercom conversations, ${
+              wrappedData.archetype.resolutionRate * 100
+            }% were solved on first response. Only ${
+              wrappedData.archetype.percentile
+            }% of users share this archetype.`"
             button-text="Share story"
             button-class="c-button--alt"
           >
@@ -251,13 +260,16 @@
             <div class="wrapped-card__cardswrapper">
               <div class="wrapped-card__card wrapped-card__card--small">
                 <h3 class="wrapped-card__card-gradient u-text-h3 u-text-black">
-                  Refunds . Compliance . Chargeback
+                  {{ wrappedData.themes.words[0] }} .
+                  {{ wrappedData.themes.words[1] }} .
+                  {{ wrappedData.themes.words[2] }}
                 </h3>
               </div>
               <div class="wrapped-card__card">
                 <p>
-                  73% of your searches, conversations, and docs lived here. When
-                  things got complicated, teams came to you 🫡
+                  {{ wrappedData.themes.percentageOccurence }}% of your
+                  searches, conversations, and docs lived here. When things got
+                  complicated, teams came to you 🫡
                 </p>
               </div>
             </div>
@@ -270,21 +282,19 @@
               Your Most Used Phrases
             </h2>
             <div class="wrapped-card__cardswrapper">
-              <div class="wrapped-card__card wrapped-card__card--small">
+              <div
+                class="wrapped-card__card wrapped-card__card--small"
+                v-for="(item, index) in wrappedData.themes.topPhrases"
+                :key="index"
+              >
                 <p class="u-text-h3 u-text-black">
                   <span class="wrapped-card__card-gradient">
-                    "I'm glad to hear that, you can reach out if you have any
-                    other issues."
+                    "{{ item.phrase }}"
                   </span>
-                  x203 times 🤯
-                </p>
-              </div>
-              <div class="wrapped-card__card wrapped-card__card--small">
-                <p class="u-text-h3 u-text-black">
-                  <span class="wrapped-card__card-gradient">
-                    "Alright, I'll look into that shortly."
+                  x{{ item.occurrence }} times
+                  <span>
+                    {{ item.occurrence > 199 ? "🤯" : "😅" }}
                   </span>
-                  x132 times 😅
                 </p>
               </div>
             </div>
@@ -294,8 +304,8 @@
           <WrappedSplitCard
             variant="blue"
             label="Knowledge creator"
-            heading="18 Docs created"
-            body="You authored 18 documentation pages in Slite this year, and your 'CAC Lookup Guide' was viewed 731 times by 56 teammates. You're literally writing the playbook."
+            :heading="`${wrappedData.docs.created} Docs created`"
+            :body="`You authored ${wrappedData.docs.created} documentation pages in Slite this year, and your '${wrappedData.docs.topDoc.title}' was viewed ${wrappedData.docs.topDoc.viewed} times by ${wrappedData.docs.topDoc.viewers} teammates. You're literally writing the playbook.`"
             button-text="Share story"
             illustration-class="wrapped-card__illustration--grid"
           />
@@ -309,14 +319,16 @@
                 your 2025 wrapped
               </span>
               <p class="u-text-h1">
-                <span class="wrapped-card__copy-gradient">3,520 searches</span>
+                <span class="wrapped-card__copy-gradient">
+                  {{ wrappedData.searches.total }} searches
+                </span>
                 🤯
               </p>
               <p class="u-text-h2">
                 <span
                   class="wrapped-card__copy-gradient wrapped-card__copy-gradient--orange"
                 >
-                  240 hours reclaimed
+                  {{ wrappedData.hoursReclaimed }} hours reclaimed
                 </span>
                 💆🏼
               </p>
@@ -324,7 +336,8 @@
                 <span
                   class="wrapped-card__copy-gradient wrapped-card__copy-gradient--pink"
                 >
-                  89% resolution rate
+                  {{ wrappedData.archetype.resolutionRate * 100 }}% resolution
+                  rate
                 </span>
                 ⚡
               </p>
@@ -334,26 +347,24 @@
             </div>
             <svg
               class="wrapped-card__illustration"
-              width="592"
-              height="515"
-              viewBox="0 0 592 515"
+              width="505"
+              height="440"
+              viewBox="0 0 505 440"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <ellipse
-                cx="386.362"
-                cy="316.792"
+                cx="308.879"
+                cy="240.665"
                 rx="195.586"
                 ry="195.586"
-                transform="rotate(33.5788 386.362 316.792)"
                 fill="#232323"
               />
               <ellipse
-                cx="271.124"
-                cy="271.123"
+                cx="195.586"
+                cy="195.586"
                 rx="195.586"
                 ry="195.586"
-                transform="rotate(33.5788 271.124 271.123)"
                 fill="#176BE5"
               />
             </svg>
@@ -420,20 +431,71 @@ const flickity = ref(null);
 const slideIndex = ref(0);
 const slideCount = ref(0);
 
-const searchData = [
-  { name: "JAN : 245", color: "#FF824D" },
-  { name: "FEB : 273", color: "##FF824D" },
-  { name: "MAR : 221", color: "#176BE5" },
-  { name: "APR : 152", color: "#EF91F7" },
-  { name: "MAY : 183", color: "#FF9FBE" },
-  { name: "JUN : 192", color: "#232323" },
-  { name: "JUL : 190", color: "#176BE5" },
-  { name: "AUG : 180", color: "#FF824D" },
-  { name: "SEP : 220", color: "#232323" },
-  { name: "OCT : 200", color: "#176BE5" },
-  { name: "NOV : 210", color: "#54C3FF" },
-  { name: "DEC : 195", color: "#FF9FBE" },
-];
+const wrappedData = {
+  user: {
+    firstName: "Kolapo",
+  },
+  searches: {
+    total: 2975,
+    months: [
+      { name: "JAN : 245", color: "#FF824D" },
+      { name: "FEB : 273", color: "##FF824D" },
+      { name: "MAR : 221", color: "#176BE5" },
+      { name: "APR : 152", color: "#EF91F7" },
+      { name: "MAY : 183", color: "#FF9FBE" },
+      { name: "JUN : 192", color: "#232323" },
+      { name: "JUL : 190", color: "#176BE5" },
+      { name: "AUG : 180", color: "#FF824D" },
+      { name: "SEP : 220", color: "#232323" },
+      { name: "OCT : 200", color: "#176BE5" },
+      { name: "NOV : 210", color: "#54C3FF" },
+      { name: "DEC : 195", color: "#FF9FBE" },
+    ],
+  },
+  hoursReclaimed: 240,
+  peakMonth: {
+    name: "May",
+    escalations: {
+      total: 23,
+      tool: "Jira",
+    },
+    resolvedConversations: {
+      total: 230,
+      tool: "Intercom",
+    },
+    fastestResolutionSeconds: 43,
+    docsCreated: 10,
+  },
+  archetype: {
+    name: "The Closer ⚡",
+    conversations: 970,
+    resolutionRate: 0.89,
+    percentile: 2.1,
+  },
+  themes: {
+    words: ["Refunds", "Compliance", "Chargeback"],
+    percentageOccurence: 73,
+    topPhrases: [
+      {
+        phrase:
+          "I'm glad to hear that, you can reach out if you have any other issues.",
+        occurrence: 203,
+      },
+      {
+        phrase: "Alright, I'll look into that shortly.",
+        occurrence: 132,
+      },
+    ],
+  },
+  docs: {
+    created: 19,
+    topDoc: {
+      title: "CAC Lookup Guide",
+      views: 731,
+      viewers: 56,
+    },
+  },
+};
 
 const moveSlide = (direction) => {
   flickity.value[direction === SlideDirection.NEXT ? "next" : "previous"]();
@@ -463,8 +525,8 @@ const handleNavigationButtonClick = (direction) => {
 const searchesValue = ref(0);
 
 const initSearchesCounterAnimation = () => {
-  const target = 2975;
-  const duration = 1500;
+  const target = wrappedData.searches.total;
+  const duration = 2000;
   let startTime = null;
 
   const animate = (timestamp) => {
@@ -527,7 +589,7 @@ onMounted(async () => {
         initSearchesCounterAnimation();
 
         if (!isMatterEngineInitialized.value) {
-          initPhysicsEngine("js-matter-physics", searchData, {
+          initPhysicsEngine("js-matter-physics", wrappedData.searches.months, {
             useSprite: false,
           });
           isMatterEngineInitialized.value = true;

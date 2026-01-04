@@ -142,7 +142,7 @@
         animation: slide 0.8s var(--ease-out-expo) forwards var(--delay),
           fade 1s linear forwards var(--delay);
 
-        @for $i from 1 through 10 {
+        @for $i from 1 through 15 {
           &:nth-child(#{$i}) {
             --delay: #{$i * 0.14s};
           }
