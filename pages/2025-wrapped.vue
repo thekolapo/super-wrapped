@@ -568,6 +568,7 @@ onMounted(async () => {
   const Flickity = (await import("flickity")).default;
   flickity.value = new Flickity(wrappedCarousel.value, {
     draggable: isSmallScreen.value || false,
+    dragThreshold: 15,
     adaptiveHeight: true,
     cellAlign: "left",
     contain: true,
