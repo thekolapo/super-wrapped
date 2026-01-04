@@ -466,7 +466,10 @@
           </article>
         </div>
       </div>
-      <div class="wrapped__scroll-buttons" v-if="!isSmallScreen">
+      <div
+        class="wrapped__scroll-buttons"
+        v-if="!isSmallScreen && slideIndex !== 0"
+      >
         <button
           class="wrapped__scroll-button"
           @click="handleNavigationButtonClick(SlideDirection.PREVIOUS)"
@@ -488,6 +491,7 @@
         <button
           class="wrapped__scroll-button"
           @click="handleNavigationButtonClick(SlideDirection.NEXT)"
+          v-if="slideIndex < slideCount - 1"
         >
           <svg
             width="27"
