@@ -17,16 +17,16 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "Super 2025 Wrapped",
+      title: "My 2025 Super Wrapped",
       meta: [
         {
           name: "description",
-          content: "My 2025 Super Wrapped",
+          content: "",
         },
-        { property: "og:title", content: "Super 2025 Wrapped" },
+        { property: "og:title", content: "My 2025 Super Wrapped" },
         {
           property: "og:description",
-          content: "My 2025 Super Wrapped",
+          content: "",
         },
         {
           property: "og:image",
@@ -35,10 +35,10 @@ export default defineNuxtConfig({
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: "Super 2025 Wrapped" },
+        { name: "twitter:title", content: "My 2025 Super Wrapped" },
         {
           name: "twitter:description",
-          content: "My 2025 Super Wrapped",
+          content: "",
         },
         {
           name: "twitter:image",
