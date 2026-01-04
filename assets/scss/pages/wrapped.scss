@@ -175,7 +175,9 @@
 
     &__illustration {
       &--grid {
-        .circle {
+        --target-translate: translate(2%, 1%);
+
+        ellipse {
           animation: moveCircle 2.2s var(--ease-out-expo) infinite;
 
           @for $i from 1 through 20 {
@@ -184,26 +186,31 @@
             }
           }
         }
+      }
 
-        @keyframes moveCircle {
-          0% {
-            transform: translate(0);
-          }
-
-          50% {
-            transform: translate(2%, 1%);
-          }
-
-          100% {
-            transform: translate(0);
-          }
-        }
+      .circle-badge {
+        --target-translate: translate(9%, 5%);
+        animation: moveCircle 4s var(--ease-out-expo) infinite;
       }
 
       @media only screen and (max-width: 720px) {
         width: 76%;
         height: auto;
         margin: 0 auto;
+      }
+
+      @keyframes moveCircle {
+        0% {
+          transform: translate(0);
+        }
+
+        50% {
+          transform: var(--target-translate);
+        }
+
+        100% {
+          transform: translate(0);
+        }
       }
     }
 
