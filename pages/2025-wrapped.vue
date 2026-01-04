@@ -368,7 +368,7 @@
           </article>
         </div>
       </div>
-      <div class="wrapped__scroll-buttons">
+      <div class="wrapped__scroll-buttons" v-if="!isSmallScreen">
         <button
           class="wrapped__scroll-button"
           @click="handleNavigationButtonClick(SlideDirection.PREVIOUS)"
@@ -429,7 +429,7 @@ const slideIndex = ref(0);
 const slideCount = ref(0);
 
 const searchData = [
-  { name: "JAN : 245", color: "#EF91F7" },
+  { name: "JAN : 245", color: "#FF824D" },
   { name: "FEB : 273", color: "##FF824D" },
   { name: "MAR : 221", color: "#176BE5" },
   { name: "APR : 152", color: "#EF91F7" },
@@ -466,27 +466,6 @@ const animateSlideText = () => {
 
 const handleNavigationButtonClick = (direction) => {
   moveSlide(direction);
-  slideIndex.value = flickity.value.selectedIndex;
-
-  setTimeout(() => {
-    animateSlideText();
-  }, 50);
-
-  switch (slideIndex.value) {
-    case 1:
-      initSearchesCounterAnimation();
-
-      if (!isMatterEngineInitialized.value) {
-        initPhysicsEngine("js-matter-physics", searchData, {
-          useSprite: false,
-        });
-        isMatterEngineInitialized.value = true;
-      }
-      break;
-
-    default:
-      break;
-  }
 };
 
 const searchesValue = ref(0);
@@ -529,10 +508,12 @@ const deconstructText = (element) => {
   });
 };
 
+const isSmallScreen = computed(() => window.innerWidth <= 500);
+
 onMounted(async () => {
   const Flickity = (await import("flickity")).default;
   flickity.value = new Flickity(wrappedCarousel.value, {
-    draggable: false,
+    draggable: isSmallScreen.value || false,
     adaptiveHeight: true,
     cellAlign: "left",
     contain: true,
@@ -540,6 +521,30 @@ onMounted(async () => {
     prevNextButtons: false,
     selectedAttraction: 0.1,
     friction: 0.7,
+  });
+
+  flickity.value.on("change", (index) => {
+    slideIndex.value = index;
+
+    setTimeout(() => {
+      animateSlideText();
+    }, 50);
+
+    switch (slideIndex.value) {
+      case 1:
+        initSearchesCounterAnimation();
+
+        if (!isMatterEngineInitialized.value) {
+          initPhysicsEngine("js-matter-physics", searchData, {
+            useSprite: false,
+          });
+          isMatterEngineInitialized.value = true;
+        }
+        break;
+
+      default:
+        break;
+    }
   });
 
   slideCount.value = flickity.value.slides.length;
