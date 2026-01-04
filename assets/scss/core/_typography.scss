@@ -10,16 +10,24 @@
 .u-text-h1 {
   font-size: 6rem;
 
-  &--alt {
-    font-size: 12rem;
-  }
-
   @media only screen and (max-width: 720px) {
     font-size: 5rem;
   }
 
   @media only screen and (max-width: 480px) {
     font-size: 3.6rem;
+  }
+
+  &--alt {
+    font-size: 12rem;
+
+    @media only screen and (max-width: 720px) {
+      font-size: 9rem;
+    }
+
+    @media only screen and (max-width: 500px) {
+      font-size: 7rem;
+    }
   }
 }
 

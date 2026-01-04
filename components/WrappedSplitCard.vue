@@ -11,6 +11,7 @@
       <h2 class="u-text-h1 wrapped-card__animated-text">{{ heading }}</h2>
       <p class="wrapped-card__body wrapped-card__animated-text">{{ body }}</p>
       <button
+        v-if="buttonText"
         class="wrapped-card__button c-button"
         :class="buttonClass"
         @click="$emit('button-click')"

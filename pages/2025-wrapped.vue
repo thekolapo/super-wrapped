@@ -83,7 +83,7 @@
             </button>
           </article>
         </div>
-        <div class="wrapped-carousel__cell">
+        <div class="wrapped-carousel__cell" id="share-screen">
           <article class="wrapped-card wrapped-card--cream">
             <h2 class="u-text-h1 u-text-h1--alt u-font-mono">
               {{ searchesValue }}
@@ -93,12 +93,6 @@
               year. That's thousands of moments you found answers fast without
               breaking your flow.
             </p>
-            <button
-              class="wrapped-card__button c-button c-button--alt"
-              @click="handleShareButtonClick"
-            >
-              Share your wrapped
-            </button>
             <div
               id="js-matter-physics"
               class="wrapped-card__matter-container"
@@ -112,7 +106,7 @@
             body="A full month ~ 20 days of work reclaimed. Instead of hunting for
           answers, you helped customers, solved problems fast, and kept the team
           moving."
-            button-text="Share your wrapped"
+            button-text=""
             illustration-class="wrapped-card__illustration--grid"
             @buttonClick="handleShareButtonClick"
           />
@@ -123,7 +117,7 @@
             label="YOUR PEAK MONTH"
             :heading="`${wrappedData.peakMonth.name} was your Super month ⚡`"
             :body="`You created ${wrappedData.peakMonth.docsCreated} support articles in Slite, escalated ${wrappedData.peakMonth.escalations.total} issues to ${wrappedData.peakMonth.escalations.tool} , and resolved ${wrappedData.peakMonth.resolvedConversations.total} conversations in ${wrappedData.peakMonth.resolvedConversations.tool} – your fastest in just ${wrappedData.peakMonth.fastestResolutionSeconds} seconds.`"
-            button-text="Share your wrapped"
+            button-text=""
             button-class="c-button--alt"
             @buttonClick="handleShareButtonClick"
           >
@@ -312,7 +306,7 @@
             label="Knowledge creator"
             :heading="`${wrappedData.docs.created} Docs created`"
             :body="`You authored ${wrappedData.docs.created} documentation pages in Slite this year, and your '${wrappedData.docs.topDoc.title}' was viewed ${wrappedData.docs.topDoc.viewed} times by ${wrappedData.docs.topDoc.viewers} teammates. You're literally writing the playbook.`"
-            button-text="Share your wrapped"
+            button-text=""
             illustration-class="wrapped-card__illustration--grid"
             @buttonClick="handleShareButtonClick"
           />
@@ -343,8 +337,8 @@
                 <span
                   class="wrapped-card__copy-gradient wrapped-card__copy-gradient--pink"
                 >
-                  {{ wrappedData.archetype.resolutionRate * 100 }}% resolution
-                  rate
+                  {{ wrappedData.archetype.resolutionRate * 100 }}% support
+                  issues resolved
                 </span>
                 ⚡
               </p>
@@ -518,6 +512,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { useMatterPhysics } from "~/composables/useMatterPhysics";
 import WrappedSplitCard from "~/components/WrappedSplitCard.vue";
+import html2canvas from "html2canvas";
 
 const { initPhysicsEngine, destroyPhysicsEngine } = useMatterPhysics();
 
@@ -666,12 +661,21 @@ const deconstructText = (element) => {
 const isSmallScreen = computed(() => window.innerWidth <= 500);
 
 const handleShareButtonClick = async () => {
-  if (navigator.share) {
-    await navigator.share({
-      url: "https://super-wrapped.netlify.app/",
-    });
-  } else {
-    alert("Sharing is not supported in this browser.");
+  const shareData = {
+    title: "My Super Wrapped 2025",
+    text: "Here's a recap of my #SuperWrapped",
+    url: window.location.href,
+  };
+
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(shareData.url);
+      alert("Link copied to clipboard!");
+    }
+  } catch (error) {
+    console.log("Share failed:", error);
   }
 };
 
