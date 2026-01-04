@@ -109,6 +109,7 @@
     }
 
     &__label {
+      width: fit-content;
       text-transform: uppercase;
       background: linear-gradient(
         to right,
@@ -119,6 +120,29 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+
+      &--blue {
+        background: linear-gradient(
+          to right,
+          var(--color-space-grey) 0%,
+          var(--color-neptune-blue) 100%
+        );
+      }
+
+      &--orange {
+        background: linear-gradient(
+          to right,
+          var(--color-saturn-orange) 0%,
+          var(--color-neptune-blue) 100%
+        );
+      }
+
+      &--blue,
+      &--orange {
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
     }
 
     &__body {

@@ -512,7 +512,6 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { useMatterPhysics } from "~/composables/useMatterPhysics";
 import WrappedSplitCard from "~/components/WrappedSplitCard.vue";
-import html2canvas from "html2canvas";
 
 const { initPhysicsEngine, destroyPhysicsEngine } = useMatterPhysics();
 

@@ -5,9 +5,19 @@
     :class="`wrapped-card--${variant}`"
   >
     <div class="wrapped-card__copy">
-      <span v-if="label" class="wrapped-card__label u-text-xs">{{
-        label
-      }}</span>
+      <span
+        v-if="label"
+        :class="[
+          'wrapped-card__label',
+          {
+            'wrapped-card__label--orange': variant === 'cream',
+            'wrapped-card__label--blue': variant === 'pink',
+          },
+          'u-text-xs',
+        ]"
+      >
+        {{ label }}
+      </span>
       <h2 class="u-text-h1 wrapped-card__animated-text">{{ heading }}</h2>
       <p class="wrapped-card__body wrapped-card__animated-text">{{ body }}</p>
       <button
