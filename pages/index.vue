@@ -67,8 +67,8 @@
         <h1 class="home__hero-heading u-text-h1">2025 Wrapped</h1>
         <p class="home__hero-body">
           A look back at the moments, patterns, and impact that shaped your year
-          at work. We’re spotlighting the small moments, big wins, and quiet
-          impact that made your year yours.
+          at work. From small moments to big wins, we’re spotlighting what truly
+          made it yours.
         </p>
         <NuxtLink to="2025-wrapped" class="home__hero-button c-button">
           Unwrap your year
