@@ -64,8 +64,7 @@
     </header>
     <main>
       <section class="home__hero">
-        <span class="home__hero-label u-text-xs">YOUR YEAR with SUPER</span>
-        <h1 class="u-text-h1">2025 Wrapped</h1>
+        <h1 class="home__hero-heading u-text-h1">2025 Wrapped</h1>
         <p class="home__hero-body">
           A look back at the moments, patterns, and impact that shaped your year
           at work. We’re spotlighting the small moments, big wins, and quiet
