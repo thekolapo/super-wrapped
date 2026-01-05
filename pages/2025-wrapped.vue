@@ -533,7 +533,7 @@
             variant="blue"
             label="Knowledge creator"
             :heading="`${wrappedData.docs.created} Docs created`"
-            :body="`You authored ${wrappedData.docs.created} documentation pages in Slite this year, and your '${wrappedData.docs.topDoc.title}' was viewed ${wrappedData.docs.topDoc.viewed} times by ${wrappedData.docs.topDoc.viewers} teammates. You're literally writing the playbook.`"
+            :body="`You authored ${wrappedData.docs.created} documentation pages in Slite this year, and your '${wrappedData.docs.topDoc.title}' was viewed ${wrappedData.docs.topDoc.views} times by ${wrappedData.docs.topDoc.viewers} teammates. You're literally writing the playbook.`"
             button-text=""
             illustration-class="wrapped-card__illustration--grid"
             @buttonClick="handleShareButtonClick"
@@ -770,7 +770,7 @@ const wrappedData = {
     topDoc: {
       title: "CAC Lookup Guide",
       views: 731,
-      viewers: 56,
+      viewers: 84,
     },
   },
   collaboration: {
