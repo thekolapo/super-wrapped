@@ -70,6 +70,11 @@
       height: 70vh;
     }
 
+    &-label {
+      visibility: hidden;
+    }
+
+    &-label,
     &-heading {
       color: line;
       background: linear-gradient(

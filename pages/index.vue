@@ -64,6 +64,7 @@
     </header>
     <main>
       <section class="home__hero">
+        <span class="home__hero-label">Your 2025 Super wrapped</span>
         <h1 class="home__hero-heading u-text-h1">2025 Wrapped</h1>
         <p class="home__hero-body">
           A look back at the moments, patterns, and impact that shaped your year
