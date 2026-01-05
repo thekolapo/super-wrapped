@@ -301,6 +301,44 @@
           </article>
         </div>
         <div class="wrapped-carousel__cell">
+          <article class="wrapped-card wrapped-card--cream">
+            <span
+              class="wrapped-card__label wrapped-card__label--orange u-text-xs"
+            >
+              The Collaborator
+            </span>
+            <h2 class="wrapped-card__animated-text u-text-h1">
+              Collaborative Duo
+            </h2>
+            <p class="wrapped-card__body wrapped-card__animated-text">
+              You and {{ wrappedData.collaboration.partner.name }} were an
+              unstoppable duo, collaborating on
+              {{ wrappedData.collaboration.metrics.supportTickets }} support
+              tickets and
+              {{ wrappedData.collaboration.metrics.documents }} shared
+              documents. Together, you handled the entire
+              {{ wrappedData.collaboration.peakMoments }}.
+            </p>
+            <div
+              ref="collaboratorImages"
+              class="wrapped-card__collaborator-images"
+            >
+              <div class="wrapped-card__collaborator-imgwrap">
+                <img
+                  :src="wrappedData.collaboration.partner.image"
+                  :alt="`${wrappedData.collaboration.partner.name} image`"
+                />
+              </div>
+              <div class="wrapped-card__collaborator-imgwrap">
+                <img
+                  :src="wrappedData.user.image"
+                  :alt="`${wrappedData.user.firstName} image`"
+                />
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="wrapped-carousel__cell">
           <WrappedSplitCard
             variant="pink"
             label="The Connector"
@@ -658,6 +696,7 @@ import WrappedSplitCard from "~/components/WrappedSplitCard.vue";
 const { initPhysicsEngine, destroyPhysicsEngine } = useMatterPhysics();
 
 const wrappedCarousel = ref(null);
+const collaboratorImages = ref(null);
 const toolsConnectorSvg = ref(null);
 const introHeading = ref(null);
 const SlideDirection = {
@@ -672,6 +711,7 @@ const slideCount = ref(0);
 const wrappedData = {
   user: {
     firstName: "Kolapo",
+    image: "/kp.png",
   },
   searches: {
     total: 2975,
@@ -732,6 +772,17 @@ const wrappedData = {
       views: 731,
       viewers: 56,
     },
+  },
+  collaboration: {
+    partner: {
+      name: "Lara",
+      image: "/lara.png",
+    },
+    metrics: {
+      supportTickets: 97,
+      documents: 38,
+    },
+    peakMoment: "Q4 billing migration support",
   },
   topTools: ["Slite", "Intercom", "Slack", "Jira"],
 };
@@ -864,6 +915,13 @@ onMounted(async () => {
           });
           isMatterEngineInitialized.value = true;
         }
+        break;
+
+      case 6:
+        collaboratorImages.value.style.setProperty(
+          "--anim-play-state",
+          "running"
+        );
         break;
 
       case 7:

@@ -276,15 +276,15 @@
           }
         }
 
-        @keyframes scaleIn {
-          to {
-            transform: scale(1);
-          }
-        }
-
         @keyframes drawStroke {
           to {
             stroke-dashoffset: 0;
+          }
+        }
+
+        @keyframes scaleIn {
+          to {
+            transform: scale(1);
           }
         }
       }
@@ -364,6 +364,62 @@
       }
     }
 
+    &__collaborator-images {
+      --scale: 18rem;
+      --anim-play-state: paused;
+      display: flex;
+      margin-top: 10rem;
+      min-height: var(--scale);
+      background-color: bisque;
+      justify-content: center;
+
+      @media only screen and (max-width: 500px) {
+        margin-top: 5rem;
+        --scale: 11rem;
+      }
+
+      .wrapped-card__collaborator-imgwrap {
+        --delay: 1.5s;
+        position: absolute;
+        width: var(--scale);
+        height: var(--scale);
+        --translate: translate(-45%, 0);
+        margin: 0 auto;
+        overflow: hidden;
+        filter: drop-shadow(0px 8px 30px rgba(0, 0, 0, 0.35));
+        transform: var(--translate) scale(0);
+        animation: scaleIn 0.8s var(--ease-out-expo) forwards var(--delay);
+        animation-play-state: var(--anim-play-state);
+        border-radius: 50%;
+
+        &:last-child {
+          --delay: 1.6s;
+          --translate: translate(45%, -20%);
+        }
+
+        img {
+          --delay: 1.6s;
+          --translate: translate(0);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: scale(1.3);
+          animation: scaleIn 0.6s var(--ease-out-expo) forwards var(--delay);
+          animation-play-state: var(--anim-play-state);
+
+          &:last-child {
+            --delay: 1.7s;
+          }
+        }
+
+        @keyframes scaleIn {
+          to {
+            transform: var(--translate) scale(1);
+          }
+        }
+      }
+    }
+
     &--split {
       display: flex;
       flex-direction: row;
@@ -398,7 +454,7 @@
         background: var(--color-saturn-orange);
         filter: blur(10px);
         transition: 1.2s ease-in-out;
-        animation: scaleup 1.6s var(--ease-out-expo) forwards;
+        animation: scaleup 1.6s var(--ease-out-expo) forwards 0.4s;
         transform: translateY(95%) scale(0.5);
 
         @keyframes scaleup {
