@@ -317,7 +317,7 @@
               tickets and
               {{ wrappedData.collaboration.metrics.documents }} shared
               documents. Together, you handled the entire
-              {{ wrappedData.collaboration.peakMoments }}.
+              {{ wrappedData.collaboration.peakMoment }}.
             </p>
             <div
               ref="collaboratorImages"
