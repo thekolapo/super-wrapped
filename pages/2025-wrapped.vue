@@ -917,14 +917,14 @@ onMounted(async () => {
         }
         break;
 
-      case 6:
+      case 7:
         collaboratorImages.value.style.setProperty(
           "--anim-play-state",
           "running"
         );
         break;
 
-      case 7:
+      case 8:
         toolsConnectorSvg.value.style.setProperty(
           "--anim-play-state",
           "running"
