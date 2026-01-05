@@ -212,6 +212,83 @@
         }
       }
 
+      &--connector {
+        --anim-play-state: paused;
+
+        .logo {
+          --delay: 0.5s;
+          transform: scale(0);
+          transform-box: fill-box;
+          transform-origin: center;
+          animation: scaleIn 0.7s var(--ease-out-expo) forwards var(--delay);
+          animation-play-state: var(--anim-play-state);
+
+          &--super {
+            --delay: 1s;
+          }
+
+          &--slite {
+            --delay: 2s;
+          }
+
+          &--jira {
+            --delay: 3s;
+          }
+
+          &--intercom {
+            --delay: 4s;
+          }
+
+          &--slack {
+            --delay: 5s;
+          }
+        }
+
+        .connector {
+          --delay: 1s;
+          --stroke-length: 100;
+          stroke-dasharray: var(--stroke-length);
+          stroke-dashoffset: var(--stroke-length);
+          animation: drawStroke 0.8s ease-out forwards var(--delay);
+          animation-play-state: var(--anim-play-state);
+
+          &--intercom,
+          &--jira {
+            transform-box: fill-box;
+            transform-origin: center;
+            transform: scale(-1);
+          }
+
+          &--slite {
+            --delay: 1.4s;
+          }
+
+          &--jira {
+            --delay: 2.4s;
+          }
+
+          &--intercom {
+            --delay: 3.4s;
+          }
+
+          &--slack {
+            --delay: 4.4s;
+          }
+        }
+
+        @keyframes scaleIn {
+          to {
+            transform: scale(1);
+          }
+        }
+
+        @keyframes drawStroke {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+      }
+
       .circle-badge {
         --target-translate: translate(9%, 5%);
         animation: moveCircle 4s var(--ease-out-expo) infinite;
@@ -393,7 +470,7 @@
 
     &--cream,
     &--pink {
-      color: var(--color-space-grey);
+      color: var(--color-light-black);
 
       .u-text-h1 {
         color: var(--color-space-grey);
